@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Portfolio Edukator Profesional - Aesthetic Lilac</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           1. COLOR PALETTE & VISUAL THEME (CSS VARIABLES)
+           ========================================================================== */
+        :root {
+            --primary: #C8A2C8;       /* Lilac */
+            --secondary: #E6E6FA;     /* Lavender */
+            --accent: #967BB6;        /* Deep Lilac/Plum */
+            --bg-gradient: linear-gradient(135deg, #E6E6FA 0%, #DCD0FF 100%);
+            --text-main: #3A2E4C;     /* Kontras tinggi untuk keterbacaan */
+            --text-muted: #645478;
+            --card-bg: rgba(255, 255, 255, 0.45);
+            --card-border: rgba(150, 123, 182, 0.2);
+            --shadow: 0 8px 32px 0 rgba(150, 123, 182, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ==========================================================================
+           2. HOMEPAGE & NAVIGATION STRUCTURE
+           ========================================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(230, 230, 250, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        /* Dropdown Menu System */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(243, 229, 245, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            list-style: none;
+            padding: 0.5rem 0;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .dropdown-item a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ==========================================================================
+           3. MAIN HERO SECTION & CONTENT
+           ========================================================================== */
+        main {
+            max-width: 1200px;
+            margin: 120px auto 60px auto;
+            padding: 0 2rem;
+        }
+
+        .hero-section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(4px);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Proportionate Profile Image Container */
+        .profile-container {
+            flex-shrink: 0;
+            width: 180px;  /* Ukuran proporsional, tidak terlalu besar/kecil */
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(150, 123, 182, 0.2);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-tag {
+            background: rgba(150, 123, 182, 0.15);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ==========================================================================
+           4. INTERACTIVE EFFECTS (CUSTOM FLOATING PETALS)
+           ========================================================================== */
+        #petal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Agar tidak mengganggu klik user */
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            background-color: var(--primary);
+            border-radius: 15% 70% 15% 70%; /* Bentuk kelopak bunga default */
+            opacity: 0.6;
+            animation: fall linear infinite;
+        }
+
+        /* Jika ingin menggunakan URL gambar bunga kustom, CSS di bawah ini akan aktif otomatis lewat JS jika diisi */
+        .petal.custom-img {
+            background-color: transparent !important;
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-radius: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-20px) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(105vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ==========================================================================
+           5. FOOTER / INSPIRATIONAL QUOTE SECTION
+           ========================================================================== */
+        .quote-card {
+            background: linear-gradient(135deg, rgba(200, 162, 200, 0.3) 0%, rgba(230, 230, 250, 0.5) 100%);
+            border: 1px solid rgba(150, 123, 182, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--text-main);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .quote-author {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsivitas gawai (Mobile Friendly) */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 1rem; }
+            .nav-menu { gap: 1rem; }
+            .hero-section { flex-direction: column; text-align: center; padding: 2rem; }
+            .profile-container { width: 150px; height: 150px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="petal-container"></div>
+
+    <header>
+        <nav class="navbar">
+            <a href="#" class="nav-logo">E-Portfolio.</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Profile ▾</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="#biodata">Biodata Guru</a></li>
+                        <li class="dropdown-item"><a href="#pendidikan">Riwayat Pendidikan</a></li>
+                        <li class="dropdown-item"><a href="#motto">Motto Hidup</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="#artifacts" class="nav-link">Artifacts & Analysis</a></li>
+                <li class="nav-item"><a href="#reflection" class="nav-link">Reflection</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="profile-container">
+                <img src="https://via.placeholder.com/180" alt="Foto Profil Guru" class="profile-img">
+            </div>
+            <div class="hero-content">
+                <span class="hero-tag">Edukator & Praktisi Pendidikan</span>
+                <h1>Selamat Datang di Portofolio Digital Saya</h1>
+                <p>
+                    Ruang ini merupakan dokumentasi reflektif dari perjalanan profesional saya sebagai pendidik. 
+                    Di sini, Anda akan menemukan integrasi antara rancangan pembelajaran inovatif (RPP), 
+                    analisis asesmen berbasis data, serta refleksi mendalam teoretis terhadap praktik klinis di lapangan.
+                </p>
+            </div>
+        </section>
+
+        <section class="quote-card">
+            <p class="quote-text">
+                "Pendidikan bukanlah proses mengisi wadah yang kosong, melainkan menyalakan api pikiran yang mampu menerangi jalan perubahan."
+            </p>
+            <p class="quote-author">— Filosofi Edukasi Profesional</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Portofolio Digital | Dirancang dengan Estetika Lilac Profesional.</p>
+    </footer>
+
+    <script>
+        // INSTRUKSI KUSTOMISASI GAMBAR:
+        // Jika ingin mengganti bentuk kelopak standar dengan gambar bunga Lilac asli Anda:
+        // 1. Masukkan URL gambar Anda pada variabel CUSTOM_PETAL_URL di bawah (misal: 'https://site.com/bunga.png')
+        // 2. Ubah nilainya dari null menjadi string URL. Jika tetap null, sistem otomatis memakai kelopak CSS bawaan.
+        const CUSTOM_PETAL_URL =
